@@ -1,0 +1,31 @@
+redesign stranek
+
+aktualni menu
+	-	uvod - kruspanek
+	-	clenove
+	-	kontakty
+	
+	-	akce
+	-	vystoupeni
+	-	fotogalerie
+	
+	-	info servis
+	
+	-	kycera
+	-	vonicka
+	-	odkazy
+	
+nove	
+	-	uvod - novinky - obsahujici i pozvanky na akce
+	- 	about - puvodni kruspanek + kontakty
+	-	akce
+	-	fotogalerie
+	-	clenove
+	-	odkazy
+	
+	- 	mapa stranek
+	- 	rss
+	
+vsechny zpravy jsou v postech s tim, ze mam tagy action, news -> na uvodu jsou vsechny posty, na akcich pouze s tagem action	
+	
+	
