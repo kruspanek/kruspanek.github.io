@@ -12,9 +12,14 @@ const pkg = require('./package.json');
 
 // Set the banner content
 const banner = ['/*!\n',
-  ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
+  ' * Kruspanek is inspired by two magnificent templates: \n',
+  ' * 1. Mainly used: Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
   ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
   ' * Licensed under <%= pkg.license %> (https://github.com/BlackrockDigital/<%= pkg.name %>/blob/master/LICENSE)\n',
+  ' *  and\n',
+  ' * 2. Some css style are taken from: Start Bootstrap - Grayscale v5.0.5 (https://startbootstrap.com/template-overviews/grayscale)\n',
+  ' * Copyright 2013-2019 Start Bootstrap\n',
+  ' * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-grayscale/blob/master/LICENSE)\n',
   ' */\n',
   '\n'
 ].join('');
