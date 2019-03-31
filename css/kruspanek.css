@@ -9,7 +9,6 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-grayscale/blob/master/LICENSE)
  */
 
-@charset "UTF-8";
 body {
   overflow-x: hidden;
   font-family: 'Nunito';
@@ -46,7 +45,7 @@ h6 {
 }
 
 section {
-  padding: 50px 0;
+  padding: 50px 0 0 0;
 }
 
 section h2.section-heading {
@@ -59,13 +58,13 @@ section h3.section-subheading {
   font-size: 16px;
   font-weight: 400;
   font-style: italic;
-  margin-bottom: š5px;
+  margin-bottom: 5px;
   text-transform: none;
 }
 
 @media (min-width: 768px) {
   section {
-    padding: 50px 0;
+    padding: 50px 0 0 0;
   }
 }
 
