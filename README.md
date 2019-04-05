@@ -1,6 +1,3 @@
-https://github.com/laklau/agency-jekyll-theme/
-
-
 # kruspanek.github.io
 Organization web pages
 
