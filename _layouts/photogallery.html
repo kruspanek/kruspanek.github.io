@@ -1,0 +1,34 @@
+---
+layout: default
+---
+{% assign items = "" | split:"," %}
+{% assign checked_path = 'assets/img/photogalleries/' + page.image_dir %}
+{% for image in site.static_files %}
+  {% if image.path contains checked_path %}
+    {% assign items = items | push: image %}
+  {% endif %}
+{% endfor %}
+{{ items | inspect }}
+<article class="photogallery">
+  <header class="photogallery-header">
+    <h1>{{ page.title | escape }}</h1>
+  </header>
+  <div class="photogallery-content">
+    {{ content }}
+    <div class="row">
+      {% for item in items %}
+        <div class="photogallery-thumbnail">
+          <a href="{{ site.url }}{{ item.path }}" data-toggle="lightbox" data-gallery="gallery" data-type="image" class="col-sm-3">
+            <img src="{{ site.url }}{{ item.path }}" class="img-fluid img-thumbnail photogallery-image">
+          </a>
+        </div>
+        {% unless forloop.last %}
+         {% cycle '','', '', '</div><div class="row">' %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</article>
+<script>
+
+</script>

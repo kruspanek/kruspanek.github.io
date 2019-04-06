@@ -1,0 +1,19 @@
+// Styling for the contacts section
+#trainings {
+   .mapContainer {
+   	width: 90%;
+   	padding-top: 50%;
+   	position: relative;
+   	margin: 0 auto 1rem auto;
+
+   	.map {
+    	top: 0;
+    	bottom: 0;
+    	left: 0;
+    	right: 0;
+    	position: absolute;
+    	width: 100%;
+    	height: 100%;
+    }
+   }
+}
