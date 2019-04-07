@@ -15,10 +15,10 @@
 
 <!-- Plugin JavaScript -->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="vendor/lightbox/js/lightbox.min.js"></script>
 
 <!-- Custom scripts for this template -->
-<script src="vendor/lightbox/js/lightbox.min.js"></script>
-<script src="/assets/js/kruspanek.js"></script>
+<script src="/assets/js/kruspanek.min.js"></script>
 
 <script>
 	lightbox.option({
@@ -31,6 +31,16 @@
         $('.photo-link').on('click', function() {
             $("#photogallery-inner-content").load($(this).attr('link'));
         });
+
+        getActionDetail = (item) => {
+            return '<li>' + new Date(item.date).toLocaleDateString() + (item.time ? ' od&#160;'+item.time : '') + ' ' + item.name + ' (' + item.place + ')</li>';
+        };
+
+        {% capture now %}{{'now' | date: '%F %H:%M' }}{% endcapture %}
+        <!-- data are filtered two times: filter data by date of rebuilding site, then filter actions "live" in js -->
+        const jsNow = new Date();
+	    const actions = {{ site.data.actions | where_exp:"item", "item.date > now" | sort: "date" | jsonify }}.filter(item => new Date(item.date) > jsNow).reduce((acc, item) => acc + getActionDetail(item), '');
+        $("#actions-content").append(actions === '' ? '<span>Omlouváme se, ale v&#160;nejbližší době nic nechystáme</span>' : '<ul>'+actions+'</ul>');
    });
 
 </script>
