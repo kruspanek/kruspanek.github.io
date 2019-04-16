@@ -5,6 +5,8 @@
 <body id="page-top">
 {% include nav.html %}
 
+<button id="back-to-top" title="Nahoru">Nahoru</button>
+
 {{ content }}
 
 {% include footer.html %}
@@ -27,7 +29,7 @@
 	  'albumLabel': 'Foto %1 z %2'
 	});
 
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('.photo-link').on('click', function() {
             $("#photogallery-inner-content").load($(this).attr('link'));
         });
@@ -41,6 +43,21 @@
         const jsNow = new Date();
 	    const actions = {{ site.data.actions | where_exp:"item", "item.date > now" | sort: "date" | jsonify }}.filter(item => new Date(item.date) > jsNow).reduce((acc, item) => acc + getActionDetail(item), '');
         $("#actions-content").append(actions === '' ? '<span>Omlouváme se, ale v&#160;nejbližší době nic nechystáme</span>' : '<ul>'+actions+'</ul>');
+
+       $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            $('#back-to-top').fadeIn();
+        } else {
+            $('#back-to-top').fadeOut();
+        }
+      });
+
+      $('#back-to-top').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
    });
 
 </script>
