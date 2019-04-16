@@ -1,5 +1,5 @@
 {% assign items = "" | split:"," %}
-{% assign checked_path = 'assets/img/photogalleries/' + page.image_dir %}
+{% assign checked_path = 'assets/img/photogalleries/' | append: page.image_dir %}
 {% for image in site.static_files %}
 {% if image.path contains checked_path %}
 {% assign items = items | push: image %}
