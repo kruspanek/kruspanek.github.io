@@ -3,6 +3,7 @@
 @import "mixins.scss";
 // Global CSS
 @import "global.scss";
+@import "glyphicons.scss";
 // Components
 @import "navbar.scss";
 @import "masthead.scss";
@@ -21,10 +22,11 @@
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 15px;
+  padding: 15px 18px 14px 18px;
   border-radius: 4px;
   background-color: $gray-900;
   color: white;
+
     &:active,
     &:focus,
     &:hover {

@@ -5,7 +5,7 @@
 <body id="page-top">
 {% include nav.html %}
 
-<button id="back-to-top" title="Nahoru">Nahoru</button>
+<button id="back-to-top" title="Nahoru" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-chevron-up"></span></button>
 
 {{ content }}
 
@@ -42,7 +42,7 @@
         <!-- data are filtered two times: filter data by date of rebuilding site, then filter actions "live" in js -->
         const jsNow = new Date();
 	    const actions = {{ site.data.actions | where_exp:"item", "item.date > now" | sort: "date" | jsonify }}.filter(item => new Date(item.date) > jsNow).reduce((acc, item) => acc + getActionDetail(item), '');
-        $("#actions-content").append(actions === '' ? '<span>Omlouváme se, ale v&#160;nejbližší době nic nechystáme</span>' : '<ul>'+actions+'</ul>');
+        $("#actions-content").append(actions === '' ? '<span>Omlouváme se, ale v&#160;nejbližší době nic nechystáme.</span>' : '<ul>'+actions+'</ul>');
 
        $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
