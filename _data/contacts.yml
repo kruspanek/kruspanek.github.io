@@ -1,0 +1,14 @@
+- name: "Radka Sálusová"
+  bio: "Organizační vedoucí"
+  email: r.salusova@kruspanek.com
+  photo: 1.jpg
+
+- name: "Magdaléna Lempochnerová"
+  bio: "Umělecká vedoucí"
+  email: m.lempochnerova@kruspanek.com
+  photo: 2.jpg
+
+- name: "Radomír Křen"
+  bio: "Předseda spolku"
+  email: r.kren@kruspanek.com
+  photo: 3.jpg

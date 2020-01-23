@@ -1,0 +1,31 @@
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Valašský folklorní spolek KRUŠPÁNEK
+email: webmaster@kruspanek.com
+description: Oficiální stránky valašského folklorního spolku Krušpánek
+author: Jiří Marhold
+keyword: kruspanek valasi folklor praha
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+collections:
+  photogalleries:
+    output: true
+
+# Build settings
+
+#markdown: kramdown
+sass:
+  style: compressed
+exclude:
+  - agency-jekyll-theme.gemspec
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - screenshot.png
+  - package.json
+  - node_modules
+  - gulpfile.js

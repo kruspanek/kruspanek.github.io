@@ -1,3 +1,7 @@
-node_modules
 .idea
-kruspanek.github.io.iml
+*.gem
+.bundle
+.jekyll-metadata
+.sass-cache
+_site
+node_modules

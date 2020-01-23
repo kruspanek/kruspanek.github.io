@@ -1,0 +1,20 @@
+{% assign items = "" | split:"," %}
+{% assign checked_path = 'assets/img/photogalleries/' | append: page.image_dir %}
+{% for image in site.static_files %}
+{% if image.path contains checked_path %}
+{% assign items = items | push: image %}
+{% endif %}
+{% endfor %}
+<h1>{{ page.title | escape }}</h1>
+<div id="ph-content" class="ph-content">
+    {{ content }}
+    <div class="row">
+        {% for item in items %}
+        <div class="col-md-4 col-sm-6 photo-item">
+            <a  href="{{ item.path }}" title="{{ photo.title }}" data-lightbox="photo">
+                <img class="img-fluid" src="{{ item.path }}" alt="{{ photo.title }}">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>

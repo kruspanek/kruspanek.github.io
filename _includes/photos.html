@@ -1,0 +1,32 @@
+<!-- Photos -->
+<section class="bg-light" id="photos">
+	<div class="container">
+	  <div class="row">
+		<div class="col-lg-12 text-center">
+		  <h2 class="section-heading text-uppercase">Fotky</h2>
+		  <h3 class="section-subheading text-muted">Pár momentů z&#160;našich vystoupení, zkoušek a&#160;jiných akcí.</h3>
+		</div>
+	  </div>
+	  <div class="row">
+		  {% assign sorted = site.photogalleries %}
+		  {% for photo in sorted %}
+			  <div class="col-md-4 col-sm-6 photo-item">
+				  <a href="#photogallery" class="photo-link" data-toggle="modal" link="photogalleries/{{ photo.image_dir }}" data-backdrop="static" data-keyboard="false">
+					  <div class="photo-hover">
+						  <div class="photo-hover-content">
+							  <i class="fa fa-plus fa-3x"></i>
+						  </div>
+					  </div>
+					  <img src="/assets/img/photogalleries/{{ photo.image_dir }}/{{ photo.image }}" class="img-fluid" alt="{{ photo.title }}">
+				  </a>
+				  <div class="photo-caption">
+					  <h4>{{ photo.title }}</h4>
+					  {% if photo.description %}
+					  <p class="text-muted">{{ photo.description }}</p>
+					  {% endif %}
+				  </div>
+			  </div>
+		  {% endfor %}
+	  </div>
+	</div>
+</section>

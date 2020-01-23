@@ -1,136 +1,65 @@
-// Load plugins
-const autoprefixer = require("gulp-autoprefixer");
-const browsersync = require("browser-sync").create();
-const cleanCSS = require("gulp-clean-css");
-const gulp = require("gulp");
-const header = require("gulp-header");
-const plumber = require("gulp-plumber");
-const rename = require("gulp-rename");
-const sass = require("gulp-sass");
-const uglify = require("gulp-uglify");
-const pkg = require('./package.json');
+var gulp        = require('gulp');
+var browserSync = require('browser-sync');
+var sass        = require('gulp-sass');
+var prefix      = require('gulp-autoprefixer');
+var cssnano     = require('gulp-cssnano');
+var concat      = require('gulp-concat');
+var uglify      = require('gulp-uglify');
+var cp          = require('child_process');
 
-// Set the banner content
-const banner = ['/*!\n',
-  ' * Kruspanek is inspired by two magnificent templates: \n',
-  ' * 1. Mainly used: Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
-  ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
-  ' * Licensed under <%= pkg.license %> (https://github.com/BlackrockDigital/<%= pkg.name %>/blob/master/LICENSE)\n',
-  ' *  and\n',
-  ' * 2. Some css style are taken from: Start Bootstrap - Grayscale v5.0.5 (https://startbootstrap.com/template-overviews/grayscale)\n',
-  ' * Copyright 2013-2019 Start Bootstrap\n',
-  ' * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-grayscale/blob/master/LICENSE)\n',
-  ' */\n',
-  '\n'
-].join('');
+var messages = {
+  jekyllDev: 'Running: $ jekyll build for dev',
+  jekyllProd: 'Running: $ jekyll build for prod'
+};
 
-// Copy third party libraries from /node_modules into /vendor
-gulp.task('vendor', function(cb) {
-
-  // Bootstrap
-  gulp.src([
-      './node_modules/bootstrap/dist/**/*',
-      '!./node_modules/bootstrap/dist/css/bootstrap-grid*',
-      '!./node_modules/bootstrap/dist/css/bootstrap-reboot*'
-    ])
-    .pipe(gulp.dest('./vendor/bootstrap'))
-
-  // Font Awesome
-  gulp.src([
-      './node_modules/@fortawesome/**/*',
-    ])
-    .pipe(gulp.dest('./vendor'))
-
-  // jQuery
-  gulp.src([
-      './node_modules/jquery/dist/*',
-      '!./node_modules/jquery/dist/core.js'
-    ])
-    .pipe(gulp.dest('./vendor/jquery'))
-
-  // jQuery Easing
-  gulp.src([
-      './node_modules/jquery.easing/*.js'
-    ])
-    .pipe(gulp.dest('./vendor/jquery-easing'))
-
-  cb();
-
+gulp.task('jekyll-dev', function (done) {
+  browserSync.notify(messages.jekyllDev);
+  return cp.spawn('jekyll', ['build', '--drafts', '--config', '_config.yml,_config_dev.yml'], {stdio: 'inherit'})
+ .on('close', done);
 });
 
-// CSS task
-function css() {
-  return gulp
-    .src("./scss/*.scss")
-    .pipe(plumber())
-    .pipe(sass({
-      outputStyle: "expanded"
-    }))
-    .on("error", sass.logError)
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions'],
-      cascade: false
-    }))
-    .pipe(header(banner, {
-      pkg: pkg
-    }))
-    .pipe(gulp.dest("./css"))
-    .pipe(rename({
-      suffix: ".min"
-    }))
-    .pipe(cleanCSS())
-    .pipe(gulp.dest("./css"))
-    .pipe(browsersync.stream());
-}
+gulp.task('jekyll-rebuild', ['jekyll-dev'], function () {
+  browserSync.reload();
+});
 
-// JS task
-function js() {
-  return gulp
-    .src([
-      './js/*.js',
-      '!./js/*.min.js',
-      '!./js/contact_me.js',
-      '!./js/jqBootstrapValidation.js'
-    ])
-    .pipe(uglify())
-    .pipe(header(banner, {
-      pkg: pkg
-    }))
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest('./js'))
-    .pipe(browsersync.stream());
-}
-
-// Tasks
-gulp.task("css", css);
-gulp.task("js", js);
-
-// BrowserSync
-function browserSync(done) {
-  browsersync.init({
-    server: {
-      baseDir: "./"
-    }
+gulp.task('browser-sync', ['sass', 'scripts', 'jekyll-dev'], function() {
+  browserSync.init({
+    server: "_site",
+    port: 1234
   });
-  done();
-}
+});
 
-// BrowserSync Reload
-function browserSyncReload(done) {
-  browsersync.reload();
-  done();
-}
+gulp.task('sass', function () {
+  return gulp.src('_sass/kruspanek.scss')
+  .pipe(sass({
+    includePaths: ['scss'],
+    onError: browserSync.notify
+  }))
+  .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
+  .pipe(gulp.dest('_site/assets/css'))
+  .pipe(browserSync.reload({stream:true}))
+  .pipe(gulp.dest('css'));
+});
 
-// Watch files
-function watchFiles() {
-  gulp.watch("./scss/**/*", css);
-  gulp.watch(["./js/**/*.js", "!./js/*.min.js"], js);
-  gulp.watch("./**/*.html", browserSyncReload);
-}
+gulp.task('scripts', function() {
+  return gulp.src(['_js/*.js'])
+  .pipe(concat('kruspanek.js'))
+  .pipe(gulp.dest('_site/assets/js'))
+  .pipe(browserSync.reload({stream:true}))
+  .pipe(gulp.dest('js'));
+});
 
-gulp.task("default", gulp.parallel('vendor', css, js));
+gulp.task('watch', function () {
+  gulp.watch(['_sass/**/*.scss','_sass/*.scss'], ['sass']);
+  gulp.watch(['_js/**/*.js'], ['scripts']);
+  gulp.watch(['index.html', '_layouts/*.html', '_posts/*', '_includes/*.html', '_drafts/*', '_photogalleries/*', '**/*.html'], ['jekyll-rebuild']);
+});
 
-// dev task
-gulp.task("dev", gulp.parallel(watchFiles, browserSync));
+gulp.task('jekyll-prod', function (done) {
+  browserSync.notify(messages.jekyllProd);
+  return cp.spawn('jekyll', ['build'], {stdio: 'inherit'})
+  .on('close', done);
+});
+
+gulp.task('default', ['browser-sync', 'watch']);
+gulp.task('build', ['jekyll-prod']);

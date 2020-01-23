@@ -10,7 +10,7 @@
         "spec": "5.7.0",
         "type": "version"
       },
-      "d:\\03_Krušpánek\\novy_web\\kruspanek.github.io"
+      "d:\\03_Krušpánek\\novy_web\\agency-jekyll-theme"
     ]
   ],
   "_from": "@fortawesome/fontawesome-free@5.7.0",
@@ -45,7 +45,7 @@
   "_shasum": "d28fd6248837ae5142c567f7ff50605824207e34",
   "_shrinkwrap": null,
   "_spec": "@fortawesome/fontawesome-free@5.7.0",
-  "_where": "d:\\03_Krušpánek\\novy_web\\kruspanek.github.io",
+  "_where": "d:\\03_Krušpánek\\novy_web\\agency-jekyll-theme",
   "author": {
     "name": "Dave Gandy",
     "email": "dave@fontawesome.com",

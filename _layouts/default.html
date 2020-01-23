@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="cs">
+{% include head.html %}
+
+<body id="page-top">
+{% include nav.html %}
+
+<button id="back-to-top" title="Nahoru" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-chevron-up"></span></button>
+
+{{ content }}
+
+{% include footer.html %}
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="vendor/lightbox/js/lightbox.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="/assets/js/kruspanek.min.js"></script>
+
+<script>
+	lightbox.option({
+	  'resizeDuration': 200,
+	  'wrapAround': true,
+	  'albumLabel': 'Foto %1 z %2'
+	});
+
+    $(document).ready(function() {
+        $('.photo-link').on('click', function() {
+            $("#photogallery-inner-content").load($(this).attr('link'));
+        });
+
+        getActionDetail = (item) => {
+            if (item.image) {
+                console.log('image: '+item.image);
+                return '<li>' +
+                    '<a  href="/assets/img/photogalleries/' + item.image + '" title="' + item.image_title + '" data-lightbox="photo">'
+                        + new Date(item.date).toLocaleDateString() + (item.time ? ' od&#160;'+item.time : '') + ' ' + item.name + ' (' + item.place + ')' +
+                    '</a>' +
+                '</li>';
+            } else {
+                return '<li>' + new Date(item.date).toLocaleDateString() + (item.time ? ' od&#160;'+item.time : '') + ' ' + item.name + ' (' + item.place + ')</li>';
+            }
+        };
+
+        {% capture now %}{{'now' | date: '%F %H:%M' }}{% endcapture %}
+        <!-- data are filtered two times: filter data by date of rebuilding site, then filter actions "live" in js -->
+        const jsNow = new Date();
+	    const actions = {{ site.data.actions | where_exp:"item", "item.date > now" | sort: "date" | jsonify }}.filter(item => new Date(item.date) > jsNow).reduce((acc, item) => acc + getActionDetail(item), '');
+        $("#actions-content").append(actions === '' ? '<span>Omlouváme se, ale v&#160;nejbližší době nic nechystáme.</span>' : '<ul>'+actions+'</ul>');
+
+       $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            $('#back-to-top').fadeIn();
+        } else {
+            $('#back-to-top').fadeOut();
+        }
+      });
+
+      $('#back-to-top').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+   });
+
+</script>
+
+</body>
+
+</html>
