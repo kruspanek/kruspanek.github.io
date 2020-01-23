@@ -8,7 +8,7 @@
 		</div>
 	  </div>
 	  <div class="row">
-		  {% assign sorted = site.photogalleries %}
+		  {% assign sorted = site.photogalleries  | sort: 'image_dir') | reverse %}
 		  {% for photo in sorted %}
 			  <div class="col-md-4 col-sm-6 photo-item">
 				  <a href="#photogallery" class="photo-link" data-toggle="modal" link="photogalleries/{{ photo.image_dir }}" data-backdrop="static" data-keyboard="false">
