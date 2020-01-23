@@ -36,7 +36,6 @@
 
         getActionDetail = (item) => {
             if (item.image) {
-                console.log('image: '+item.image);
                 return '<li>' +
                     '<a  href="/assets/img/photogalleries/' + item.image + '" title="' + item.image_title + '" data-lightbox="photo">'
                         + new Date(item.date).toLocaleDateString() + (item.time ? ' od&#160;'+item.time : '') + ' ' + item.name + ' (' + item.place + ')' +
