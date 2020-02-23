@@ -46,10 +46,10 @@
             }
         };
 
-        {% capture now %}{{'now' | date: '%F %H:%M' }}{% endcapture %}
+        {% capture now %}{{'now' | date: '%F' }}{% endcapture %}
         <!-- data are filtered two times: filter data by date of rebuilding site, then filter actions "live" in js -->
-        const jsNow = new Date();
-	    const actions = {{ site.data.actions | where_exp:"item", "item.date > now" | sort: "date" | jsonify }}.filter(item => new Date(item.date) > jsNow).reduce((acc, item) => acc + getActionDetail(item), '');
+        const jsNow = new Date().setHours(0,0,0,0);
+        const actions = {{ site.data.actions | where_exp:"item", "item.date >= now" | sort: "date" | jsonify }}.filter(item => new Date(item.date).setHours(0,0,0,0) >= jsNow).reduce((acc, item) => acc + getActionDetail(item), '');
         $("#actions-content").append(actions === '' ? '<span>Omlouváme se, ale v&#160;nejbližší době nic nechystáme.</span>' : '<ul>'+actions+'</ul>');
 
        $(window).scroll(function () {
