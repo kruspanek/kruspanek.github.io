@@ -4,10 +4,14 @@
   <div class="row">
 	<div class="col-lg-12 text-center">
 	  <h2 class="section-heading text-uppercase">Zkoušky</h2>
-		<p>Zkoušky probíhají každé pondělí od&#160;19:00 do&#160;21:00 v&#160;budově školy Josefská 626/7, 118&#160;00 Praha&#160;1 - Malá&#160;Strana.</p>
-	  <p class="mapContainer">
-		<iframe class="map" style="border:none" src="https://frame.mapy.cz/s/pokedazomu"></iframe>
-	  </p>
+		{% if site.trainings %}
+		  <p>Zkoušky probíhají každé pondělí od&#160;19:00 do&#160;21:00 v&#160;budově školy Josefská 626/7, 118&#160;00 Praha&#160;1 - Malá&#160;Strana.</p>
+		  <p class="mapContainer">
+			<iframe class="map" style="border:none" src="https://frame.mapy.cz/s/pokedazomu"></iframe>
+		  </p>
+		{% else %}
+			<p><s>Zkoušky probíhají každé pondělí od&#160;19:00 do&#160;21:00 v&#160;budově školy Josefská 626/7, 118&#160;00 Praha&#160;1 - Malá&#160;Strana.</s></p>
+		{% endif %}
 	  <p>Kdo může přijít? Kdokoliv, kdo má rád Valašsko, rád tancuje a&#160;zpívá. Předchozí taneční zkušenosti jsou vítány, nicméně nejsou podmínkou.</p>
 	  <p>
 		S&#160;sebou věci na tancování, boty s&#160;nečernící podrážkou (ideálně s&#160;negumovou podrážkou, aby se lépe tancovalo). Dále pak dobrou náladu a&#160;odhodlání.
