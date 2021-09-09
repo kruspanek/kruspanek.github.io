@@ -16,7 +16,7 @@ collections:
 
 # Custom settings
 # trainings: on/off flag to show training text or not, usually set to on, but if necessary set off: eg in corona virus time
-trainings: off
+trainings: on
 
 # Build settings
 
