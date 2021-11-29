@@ -33,7 +33,6 @@
     "lightbox2": "^2.10.0"
   },
   "devDependencies": {
-    "axios": ">=0.21.2",
     "browser-sync": "^2.26.14",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "6.0.0",
@@ -51,6 +50,7 @@
     "postcss": ">=8.2.10",
     "susy": "^3.0.5",
     "tar": ">=2.2.2",
+    "axios": ">=0.21.2",
     "color-string": ">=1.5.5",
     "glob-parent": ">=5.1.2",
     "trim-newlines": ">=3.0.1",
