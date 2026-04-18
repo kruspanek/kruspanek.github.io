@@ -34,24 +34,28 @@ h6 {
 }
 
 section {
-  padding: 50px 0 0 0;
+  padding-block: #{"clamp(2.5rem, 5vw + 1rem, 4rem)"} 0;
   h2.section-heading {
-    font-size: 40px;
+    font-size: #{"clamp(2rem, 3vw + 1rem, 2.75rem)"};
     margin-top: 0;
     margin-bottom: 15px;
   }
   h3.section-subheading {
-    font-size: 16px;
+    font-size: #{"clamp(0.95rem, 1vw + 0.75rem, 1.05rem)"};
     font-weight: 400;
     font-style: italic;
     margin-bottom: 5px;
     text-transform: none;
   }
 }
-@media(min-width:768px) {
-  section {
-    padding: 50px 0 0 0;
-  }
+
+// Site-wide keyboard focus ring — only shows for keyboard users, not mouse
+// clicks, thanks to :focus-visible. :where() keeps specificity at 0 so any
+// component-level focus style can still override.
+:where(a, button, [role="button"], input, select, textarea):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 // Button Styles

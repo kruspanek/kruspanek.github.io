@@ -25,38 +25,18 @@ header.masthead {
   .intro-text {
     position: relative;
     z-index: 1;
-    padding-top: 150px;
+    padding-block: clamp(5rem, 15vh, 9.375rem) clamp(2rem, 6vh, 4rem);
     .intro-lead-in {
-      font-size: 22px;
+      font-size: #{"clamp(1.375rem, 2vw + 1rem, 2.5rem)"};
       font-style: italic;
-      line-height: 22px;
+      line-height: 1.1;
       margin-bottom: 25px;
     }
     .intro-heading {
-      font-size: 50px;
+      font-size: #{"clamp(3.125rem, 5vw + 1rem, 4.6875rem)"};
       font-weight: 700;
-      line-height: 50px;
-      margin-bottom: 25px;
-    }
-  }
-}
-@media(min-width:768px) {
-  header.masthead {
-    .intro-text {
-      padding-top: 150px;
-      //padding-bottom: 200px;
-      .intro-lead-in {
-        font-size: 40px;
-        font-style: italic;
-        line-height: 40px;
-        margin-bottom: 25px;
-      }
-      .intro-heading {
-        font-size: 75px;
-        font-weight: 700;
-        line-height: 75px;
-        margin-bottom: 50px;
-      }
+      line-height: 1.05;
+      margin-bottom: clamp(1.5625rem, 3vw, 3.125rem);
     }
   }
 }

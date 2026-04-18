@@ -96,10 +96,28 @@
     }
 }
 
-// GLightbox overlay follows the site theme instead of its default near-black.
-// GLightbox's stylesheet loads after ours (see _includes/head.html), so
-// !important is required to win specificity.
+// GLightbox overlay + navigation buttons follow the site theme instead of
+// GLightbox's default near-black. Its stylesheet loads after ours (see
+// _includes/head.html), so !important is required to win specificity.
 .goverlay {
     background: var(--color-bg) !important;
+}
+
+.gclose,
+.glightbox-clean .gnext,
+.glightbox-clean .gprev {
+    background-color: var(--color-bg-alt) !important;
+
+    &:hover {
+        background-color: var(--color-border) !important;
+    }
+
+    .garrow {
+        stroke: var(--color-heading) !important;
+    }
+
+    path {
+        fill: var(--color-heading) !important;
+    }
 }
 

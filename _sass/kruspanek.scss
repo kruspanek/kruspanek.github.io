@@ -19,12 +19,14 @@
 #back-to-top {
   display: none;
   position: fixed;
-  bottom: 20px;
-  right: 30px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  right: calc(20px + env(safe-area-inset-right, 0px));
   z-index: 99;
   border: none;
   outline: none;
   cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
   padding: 15px 18px 14px 18px;
   border-radius: 4px;
   background-color: var(--color-back-to-top-bg);

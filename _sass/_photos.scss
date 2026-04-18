@@ -8,6 +8,12 @@
               position: relative;
               max-width: 400px;
               margin: 0 auto;
+              img {
+                  aspect-ratio: 4 / 3;
+                  object-fit: cover;
+                  width: 100%;
+                  height: auto;
+              }
               .photo-hover {
                   background: var(--photo-hover-bg);
                   position: absolute;
