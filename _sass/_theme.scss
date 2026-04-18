@@ -1,0 +1,66 @@
+// Theme tokens — runtime-swappable via html[data-theme] attribute.
+// Light is the default (on :root); dark overrides under html[data-theme="dark"].
+
+:root {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8f9fa;
+  --color-text: #6c757d;
+  --color-heading: #212529;
+  --color-accent: #007bff;
+  --color-border: #dee2e6;
+
+  --color-navbar-bg: #e9ecef;
+  --color-navbar-toggler-bg: #6c757d;
+
+  --color-back-to-top-bg: #212529;
+  --color-social-bg: #212529;
+
+  --shadow-card: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 10px 24px rgba(0, 0, 0, 0.18);
+
+  --hero-overlay: transparent;
+
+  --photo-hover-bg: rgba(108, 117, 125, 0.1);
+}
+
+html[data-theme="dark"] {
+  --color-bg: #15120e;
+  --color-bg-alt: #1d1915;
+  --color-text: #c9c1b4;
+  --color-heading: #f2e9d8;
+  --color-accent: #e6a85c;
+  --color-border: #2d2823;
+
+  --color-navbar-bg: #1d1915;
+  --color-navbar-toggler-bg: #2d2823;
+
+  --color-back-to-top-bg: #2d2823;
+  --color-social-bg: #2d2823;
+
+  --shadow-card: 0 2px 6px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 10px 24px rgba(0, 0, 0, 0.6);
+
+  --hero-overlay: rgba(20, 17, 14, 0.55);
+
+  --photo-hover-bg: rgba(230, 168, 92, 0.12);
+}
+
+// Apply page background + default text color at the html/body level so
+// everything not explicitly themed falls back to something sensible.
+html {
+  background-color: var(--color-bg);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+// Bootstrap's .bg-light has `!important` and a hardcoded light color.
+// Override to the theme token so dark mode works. All the homepage sections
+// (#about, #trainings, #actions, #contacts, #photos, .masthead) use .bg-light.
+.bg-light {
+  background-color: var(--color-bg-alt) !important;
+  color: var(--color-text);
+}

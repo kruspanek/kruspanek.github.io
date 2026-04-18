@@ -1,6 +1,6 @@
 // Styling for the navbar
 #mainNav {
-  background-color: $gray-200;
+  background-color: var(--color-navbar-bg);
   .navbar-toggler {
     font-size: 12px;
     right: 0;
@@ -8,15 +8,15 @@
     text-transform: uppercase;
     color: white;
     border: 0;
-    background-color: $primary;
+    background-color: var(--color-navbar-toggler-bg);
   }
   .navbar-brand {
-    color: $primary;
+    color: var(--color-text);
     &.active,
     &:active,
     &:focus,
     &:hover {
-      color: darken($primary, 10%);
+      color: var(--color-heading);
     }
   }
   .navbar-nav {
@@ -26,15 +26,15 @@
         font-weight: 700;
         padding: 0.75em 0;
         letter-spacing: 1px;
-        color: black;
+        color: var(--color-heading);
         &.active,
         &:hover {
-          color: $primary;
+          color: var(--color-text);
         }
         &.active {
-          color: $hover;
+          color: var(--color-accent);
           outline: none;
-          border-bottom: .25rem solid $hover;
+          border-bottom: .25rem solid var(--color-accent);
         }
       }
     }
@@ -61,9 +61,7 @@
       }
     }
     &.navbar-shrink {
-      //padding-top: 0;
-      //padding-bottom: 0;
-      background-color: $gray-200;
+      background-color: var(--color-navbar-bg);
       .navbar-brand {
         font-size: 1.25em;
         padding: 12px 0;

@@ -1,6 +1,6 @@
 // Variables
 
-// Restated Bootstrap Variables
+// Restated Bootstrap Variables (kept as compile-time colors for Bootstrap interop)
 
 $white: #fff !default;
 $gray-100: #f8f9fa !default;
@@ -22,6 +22,10 @@ $gray:				lighten($gray-base, 33.5%) !default; // #555
 $gray-light:		lighten($gray-base, 46.7%) !default; // #777
 $gray-lighter:		lighten($gray-base, 93.5%) !default; // #eee
 
-$hover: #007bff !default;
-$primary: #6c757d !default;
-
+// Theme-aware shims — resolve to CSS custom properties defined in _theme.scss.
+// Use these instead of literal color values in partials so light/dark both work.
+// NOTE: SCSS color functions (lighten, darken, fade-out, etc.) cannot operate
+// on these shims. If a partial needs a derived color, either define a new
+// token in _theme.scss or use the CSS color-mix() function directly.
+$hover: var(--color-accent);
+$primary: var(--color-text);

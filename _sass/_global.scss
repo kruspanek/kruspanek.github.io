@@ -15,7 +15,7 @@ p {
 a {
   color: $primary;
   &:hover {
-    color: darken($hover, 10%);
+    color: color-mix(in srgb, var(--color-accent), black 10%);
   }
 }
 
@@ -30,7 +30,7 @@ h4,
 h5,
 h6 {
   font-weight: 700;
-  color: $gray-900;
+  color: var(--color-heading);
 }
 
 section {
@@ -70,8 +70,8 @@ section {
   &:active,
   &:focus,
   &:hover {
-    background-color: darken($hover, 7.5%) !important;
-    border-color: darken($hover, 7.5%) !important;
+    background-color: color-mix(in srgb, var(--color-accent), black 7.5%) !important;
+    border-color: color-mix(in srgb, var(--color-accent), black 7.5%) !important;
     color: white;
   }
   &:active,

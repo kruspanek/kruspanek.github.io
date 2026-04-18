@@ -8,6 +8,8 @@
     .modal-content {
         border-radius: 0;
         background-clip: border-box;
+        background-color: var(--color-bg);
+        color: var(--color-text);
         -webkit-box-shadow: none;
         box-shadow: none;
         border: none;
@@ -17,6 +19,7 @@
         h2 {
             margin-bottom: 15px;
             font-size: 3em;
+            color: var(--color-heading);
         }
         p {
             margin-bottom: 30px;
@@ -37,6 +40,7 @@
         #photogallery-inner-content {
             h1 {
                 padding-bottom: 15px;
+                color: var(--color-heading);
             }
 
              .photo-item {
@@ -47,20 +51,20 @@
     }
     .close-modal {
         position: absolute;
-        width:75px;
-        height:75px;
+        width:35px;
+        height:35px;
         background-color:transparent;
-        top: 25px;
-        right: 25px;
+        top: 15px;
+        right: 10px;
         cursor: pointer;
         &:hover {
             opacity: 0.3;
         }
         .lr {
-            height:75px;
+            height:35px;
             width:1px;
-            margin-left:35px;
-            background-color:$gray-darker;
+            margin-left:17px;
+            background-color: var(--color-heading);
             transform: rotate(45deg);
             -ms-transform: rotate(45deg);
             /* IE 9 */
@@ -68,9 +72,9 @@
             /* Safari and Chrome */
             z-index:1051;
             .rl {
-                height:75px;
+                height:35px;
                 width:1px;
-                background-color:$gray-darker;
+                background-color: var(--color-heading);
                 transform: rotate(90deg);
                 -ms-transform: rotate(90deg);
                 /* IE 9 */

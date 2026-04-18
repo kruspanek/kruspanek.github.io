@@ -4,6 +4,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Theme FOUC guard: resolve theme synchronously before any CSS loads.
+         Priority: explicit user choice (localStorage) > OS preference > light. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('kruspanek-theme');
+          var theme = stored === 'dark' || stored === 'light'
+            ? stored
+            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
     <meta name="keywords" content="{{ page.keyword | default: site.keyword | strip_html | normalize_whitespace | escape }}">
 	<meta name="author" content="{{ page.author | default: site.author }}">
