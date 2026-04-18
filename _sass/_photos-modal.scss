@@ -96,3 +96,10 @@
     }
 }
 
+// GLightbox overlay follows the site theme instead of its default near-black.
+// GLightbox's stylesheet loads after ours (see _includes/head.html), so
+// !important is required to win specificity.
+.goverlay {
+    background: var(--color-bg) !important;
+}
+
