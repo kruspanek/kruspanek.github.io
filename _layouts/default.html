@@ -17,17 +17,21 @@
 
 <!-- Plugin JavaScript -->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-<script src="vendor/lightbox/js/lightbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
 
 <!-- Custom scripts for this template -->
 <script src="/assets/js/kruspanek.min.js"></script>
 
 <script>
-	lightbox.option({
-	  'resizeDuration': 200,
-	  'wrapAround': true,
-	  'albumLabel': 'Foto %1 z %2'
-	});
+    let photoLightbox = GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: false,
+        openEffect: 'fade',
+        closeEffect: 'fade',
+        slideEffect: 'slide'
+    });
 
     $(document).ready(function() {
         $('.photo-link').on('click', function() {
@@ -37,7 +41,7 @@
         getActionDetail = (item) => {
             if (item.image) {
                 return '<li>' +
-                    '<a  href="/assets/img/photogalleries/' + item.image + '" title="' + item.image_title + '" data-lightbox="photo">'
+                    '<a class="glightbox" href="/assets/img/photogalleries/' + item.image + '" data-gallery="actions" data-title="' + item.image_title + '">'
                         + new Date(item.date).toLocaleDateString() + (item.time ? ' od&#160;'+item.time : '') + ' ' + item.name + ' (' + item.place + ')' +
                     '</a>' +
                 '</li>';
@@ -51,6 +55,7 @@
         const jsNow = new Date().setHours(0,0,0,0);
         const actions = {{ site.data.actions | where_exp:"item", "item.date >= now" | sort: "date" | jsonify }}.filter(item => new Date(item.date).setHours(0,0,0,0) >= jsNow).reduce((acc, item) => acc + getActionDetail(item), '');
         $("#actions-content").append(actions === '' ? '<span>Omlouváme se, ale v&#160;nejbližší době nic nechystáme.</span>' : '<ul>'+actions+'</ul>');
+        photoLightbox.reload();
 
        $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {

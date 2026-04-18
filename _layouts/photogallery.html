@@ -8,13 +8,13 @@
 <h1>{{ page.title | escape }}</h1>
 <div id="ph-content" class="ph-content">
     {{ content }}
-    <div class="row">
+    <div class="ph-gallery">
         {% for item in items %}
-        <div class="col-md-4 col-sm-6 photo-item">
-            <a  href="{{ item.path }}" title="{{ photo.title }}" data-lightbox="photo">
-                <img class="img-fluid" src="{{ item.path }}" alt="{{ photo.title }}">
+        <figure class="ph-gallery__item">
+            <a class="ph-gallery__link glightbox" href="{{ item.path }}" data-gallery="{{ page.image_dir }}" data-title="{{ page.title | escape }}" aria-label="{{ page.title | escape }}">
+                <img class="ph-gallery__img" src="{{ item.path }}" alt="{{ page.title | escape }}" loading="lazy" decoding="async">
             </a>
-        </div>
+        </figure>
         {% endfor %}
     </div>
 </div>

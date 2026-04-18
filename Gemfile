@@ -20,5 +20,7 @@ gem "agency-jekyll-theme"
 gem "github-pages", group: :jekyll_plugins
 
 # If you have any plugins, put them here!
-gem 'wdm', '>= 0.1.0'
+# gem 'wdm', '>= 0.1.0'
 
+
+gem "webrick", "~> 1.9"
